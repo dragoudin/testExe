@@ -1,0 +1,22 @@
+name: Download
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download file
+        run: |
+          # Téléchargez le fichier depuis l'URL
+          curl -L -o tsmaster.exe "http://www.tosun.tech/TOSUNSoftware/TSMaster_Setup_alpha.exe"
+
+      - name: Create Atefact
+        uses: actions/upload-artifact@v2
+        with:
+          name: tsmaster
+          path: tsmaster.exe
