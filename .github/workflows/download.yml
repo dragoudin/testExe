@@ -12,9 +12,12 @@ jobs:
         run: |
           # Téléchargez le fichier depuis l'URL
           curl -L -o tsmaster_${{ github.ref }}.exe "http://www.tosun.tech/TOSUNSoftware/TSMaster_Setup_alpha.exe"
-
-      - name: Create Atefact
-        uses: actions/upload-artifact@v2
+         
+      - name: Add tsmaster to release assets
+        id: upload_asset
+        uses: actions/upload-release-asset@v1
         with:
-          name: tsmaster
-          path: "tsmaster_${{ github.ref }}.exe"
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: "tsmaster_${{ github.ref }}.exe"
+          asset_name: tsmaster_${{ github.ref }}.exe
+          asset_content_type: application/octet-stream
