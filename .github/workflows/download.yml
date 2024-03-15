@@ -1,10 +1,8 @@
-name: Download
-
+name: Download a binary
 on:
   release:
     types:
       - created
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,10 +11,10 @@ jobs:
       - name: Download file
         run: |
           # Téléchargez le fichier depuis l'URL
-          curl -L -o tsmaster.exe "http://www.tosun.tech/TOSUNSoftware/TSMaster_Setup_alpha.exe"
+          curl -L -o tsmaster_${{ github.ref }}.exe "http://www.tosun.tech/TOSUNSoftware/TSMaster_Setup_alpha.exe"
 
       - name: Create Atefact
         uses: actions/upload-artifact@v2
         with:
-          name: tsmaster_${GITHUB_REF#refs/tags/}
-          path: tsmaster.exe
+          name: tsmaster
+          path: "tsmaster_${{ github.ref }}.exe"
