@@ -18,5 +18,5 @@ jobs:
       - name: Create Atefact
         uses: actions/upload-artifact@v2
         with:
-          name: tsmaster
+          name: tsmaster_${GITHUB_REF#refs/tags/}
           path: tsmaster.exe
