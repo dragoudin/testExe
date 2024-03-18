@@ -11,8 +11,9 @@ jobs:
       - name: Download file
         uses: actions/download-artifact@v2
         with:
-          name: tsmaster_${{ github.ref_name }}.exe
-          url: http://www.tosun.tech/TOSUNSoftware/TSMaster_Setup_alpha.exe
+        run: |
+          # Téléchargez le fichier depuis l'URL
+          curl -L -o "tsmaster_${{ github.ref }}.exe" "http://www.tosun.tech/TOSUNSoftware/TSMaster_Setup_alpha.exe"
 
       - name: Add tsmaster to release assets
         id: upload_asset
