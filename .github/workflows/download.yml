@@ -14,9 +14,10 @@ jobs:
           curl -L -o "tsmaster_${{ github.ref_name }}.exe" "http://www.tosun.tech/TOSUNSoftware/TSMaster_Setup_alpha.exe"
 
       - name: Add tsmaster to release assets
-        id: upload_asset
-        uses: actions/upload-release-asset@v1
+        uses: svenstaro/upload-release-action@v2
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_name: tsmaster_${{ github.ref_name }}.exe
-          asset_content_type: application/octet-stream
+          file: tsmaster_${{ github.ref_name }}.exe
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
+          
