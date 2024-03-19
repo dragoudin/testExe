@@ -16,8 +16,10 @@ jobs:
       - name: Add tsmaster to release assets
         uses: svenstaro/upload-release-action@v2
         with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }} #GitHub token
           file: tsmaster_${{ github.ref_name }}.exe
           tag: ${{ github.ref }}
           overwrite: true
           file_glob: true
+          release_name: release ${{ github.ref_name }}
           
